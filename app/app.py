@@ -40,11 +40,10 @@ def index():
 				print(better_product)
 
 		is_best_product = better_product.get('ecoscore_score') == eco_score
-
 		return render_template('index.html', product_name=product_name, picture_src=picture, eco_score=eco_score,
 						   	better_eco_score=better_eco_score, better_product_name=better_product_name,
 							better_product_picture=better_product_picture, stores=stores,
-							is_best_product=is_best_product)
+							is_best_product=is_best_product, id='')
 	return render_template('index.html')
 
 

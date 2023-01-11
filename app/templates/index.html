@@ -7,10 +7,11 @@
         <input type="text" name="id"
                placeholder="Use scanner to proceed!"
                autofocus=true
-               value="{{ request.form['id'] }}"></input>
+               value="{{ id }}"></input>
         <button type="submit">Submit</button>
     </form>
-    <div>
+    {% if product_name %}
+        <div>
         <h1>Product: {{ product_name }}</h1>
         <h2>ecoscore: {{ eco_score }}</h2>
     </div>
@@ -20,9 +21,10 @@
         {% else %}
         <div>
         <h1>better Product: {{ better_product_name }}</h1>
-        <h2>ecoscore: {{ better_eco_score }}</h2>
+        <h1>ecoscore: {{ better_eco_score }}</h1>
         <img src={{ better_product_picture }}>
-        <h3>zu kaufen bei {{ stores }}</h3>
+        <h1>zu kaufen bei {{ stores }}</h1>
     </div>
+    {% endif %}
     {% endif %}
 {% endblock %}

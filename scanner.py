@@ -6,6 +6,7 @@ import pyautogui
 pyautogui.hotkey('alt', 'F11')
 
 timeout = 1
+calories = 0
 
 while True:
     try:
@@ -30,7 +31,7 @@ while True:
                 api = "https://world.openfoodfacts.org/api/2/product/"
 
                 #print(id)
-                r = requests.get(f"{api}{id}.json?fields=ecoscore_grade,product_name_de,nutriments")
+                r = requests.get(f"{api}{id}.json?fields=ecoscore_grade,product_name_de,nutriments,countries")
 
 
                 product = r.json()
@@ -39,9 +40,15 @@ while True:
                     if product.get('product_name_de'):
                         name = product.get('product_name_de')
                         print(f"Produktname: {name}")
+                    elif product.get('product_name'):
+                        name = product.get('product_name')
+                        print(f"Produktname: {name}")
                     if product.get('nutriments') and product.get('nutriments').get('energy-kcal_100g'):
-                        kcal = product.get('nutriments').get('energy-kcal_100g')
-                        print(f"Kalorien/100g: {kcal}")
+                        kcal100 = product.get('nutriments').get('energy-kcal')
+                        print(f"Kalorien/100g/ml: {kcal100}")
+                        kcal = product.get('nutriments').get('energy-kcal_serving')
+                        calories += kcal
+                        print(f"Insgesamt hast du {calories} kcal gescannt.") #<--- hier war davor energy :)-hinrik
                     # if product['carbon-footprint_100g']:
                     #     name = product['carbon-footprint_100g']
                     #     print(f"C02: {name}")
@@ -52,12 +59,14 @@ while True:
                             print("Ecoscore: not available")
                         else:
                             print(f"Ecoscore: {ecoscore_grade}")
+                    if product.get("countries"):
+                        country = product.get("countries")
+                        print(f"Ursprungsland: {country}")
                 else:
                     print('Product not available!')
 
                 print("#########################")
     except requests.ConnectionError:
-        # Do something
         print("The internet connection is down! Please connect to the internet first!")
         time.sleep(10)
         os.system('cls' if os.name == 'nt' else 'clear')

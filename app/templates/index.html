@@ -5,7 +5,8 @@
     <form method="post">
         <label for="title">ID:</label>
         <input type="text" name="id"
-               placeholder="Use Scanner"
+               placeholder="Use scanner to proceed!"
+               autofocus=true
                value="{{ request.form['id'] }}"></input>
         <button type="submit">Submit</button>
     </form>

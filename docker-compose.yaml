@@ -1,0 +1,15 @@
+networks:
+  proxy:
+    external: true
+
+services:
+  web:
+    container_name: scanner
+    build:
+      context: app
+      target: builder
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
+    networks:
+      - proxy

@@ -10,9 +10,19 @@
                value="{{ request.form['id'] }}"></input>
         <button type="submit">Submit</button>
     </form>
-    <ul>
-        {% for element in product %}
-            <li>{{element}}</li>
-        {% endfor %}
-    </ul>
+    <div>
+        <h1>Product: {{ product_name }}</h1>
+        <h2>ecoscore: {{ eco_score }}</h2>
+    </div>
+    {% if is_best_product == True %}
+        <img src={{ better_product_picture }}>
+        <p>i bims k1 Umweltschwein</p>
+        {% else %}
+        <div>
+        <h1>better Product: {{ better_product_name }}</h1>
+        <h2>ecoscore: {{ better_eco_score }}</h2>
+        <img src={{ better_product_picture }}>
+        <h3>zu kaufen bei {{ stores }}</h3>
+    </div>
+    {% endif %}
 {% endblock %}

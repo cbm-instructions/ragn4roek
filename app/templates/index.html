@@ -8,6 +8,10 @@
         h1 {
             font-size: 15px;
         }
+        h2 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
 
         .content {
             width: 320px;
@@ -34,7 +38,7 @@
         }
         img {
                 width:100%;
-                height:100%;
+                height: 200px;;
                 padding: 0px;
                 margin: 0px;;
             }
@@ -46,30 +50,40 @@
 
     <form method="post">
         <label for="title">ID:</label>
-        <input type="text" name="id" placeholder="Use scanner to proceed!" autofocus=true value="{{ id }}"></input>
-        <button type="submit">Submit</button>
+        <input type="text" name="id" placeholder="Nutze den Scanner!" autofocus=true value="{{ id }}"></input>
+        <button type="submit">Los</button>
     </form>
+    {% if err %}
+    <p>{{ err }}</p>
+    {% endif %}
 
     {% if product_name %}
     <div class="row">
         <div class="column1">
             <div>
                 <h1>{{ product_name }}</h1>
-                <h2>ecoscore: {{ eco_score }}</h2>
+                {% if eco_score %}
+                    <h2>Ecoscore: {{ eco_score }}</h2>
+                {% else %}
+                <p>Kein Ecoscore verfügbar.</p>
+                {% endif %}
             </div>
             {% if is_best_product == True %}
-            <p>i bims k1 Umweltschwein</p>
+                <p>D1 produkt bimst 1 Bestes.</p>
             {% else %}
+            <hr>
             <div>
                 <h1>Besser: {{ better_product_name }}</h1>
                 <h1>Ecoscore: {{ better_eco_score }}</h1>
-                <h1>zu kaufen bei {{ stores }}</h1>
+                {% if stores %}
+                    <h1>Verfügbar bei: {{ stores }}</h1>
+                {% endif %}
             </div>
             {% endif %}
         </div>
         <div class="column2">
-        <img src={{ better_product_picture }}>
-    </div>
+            <img src={{ better_product_picture }}>
+        </div>
     </div>
     {% endif %}
 </body>

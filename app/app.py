@@ -16,6 +16,7 @@ def index():
         better_eco_score = 0
         better_product_picture = ""
         is_best_product = True
+        better_product = ""
         stores = ""
         res = requests.get(f'https://de.openfoodfacts.org/api/v0/produkt/{barcode}?fields=ecoscore_score,product_name,image_front_small_url,stores,categories_hierarchy,image_front_small_url,brands')
         product = res.json()
@@ -32,6 +33,7 @@ def index():
             if category and len(category) > 0:
                 category = category[-1]
                 similar_products = get_similar_products(category)
+                print(similar_products)
                 if len(similar_products) > 0:
                     products_with_better_ecoscore = []
                     products_with_better_ecoscore_and_stores = []
@@ -54,12 +56,16 @@ def index():
                         better_product_picture = better_product.get('image_front_small_url')
                         stores = better_product.get('stores')
                     else: 
-                        err = "Es gibt keine ähnlichen Produkte."
+                        is_best_product = True
+                        better_product_picture = product.get('image_front_small_url')
                 else: 
                     err = "Es gibt keine ähnlichen Produkte."
 
-                if eco_score:
-                    is_best_product = better_product.get('ecoscore_score') == eco_score
+                if eco_score and not err:
+                    if not better_product:
+                        is_best_product = True
+                    else:
+                        is_best_product = better_product.get('ecoscore_score') == eco_score
                     if eco_score < 0: 
                             color_score = 0
                     elif eco_score > 100: 

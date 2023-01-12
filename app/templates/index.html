@@ -53,9 +53,7 @@
         <input type="text" name="id" placeholder="Nutze den Scanner!" autofocus=true value="{{ id }}"></input>
         <button type="submit">Los</button>
     </form>
-    {% if err %}
-    <p>{{ err }}</p>
-    {% endif %}
+
 
     {% if product_name %}
     <div class="row">
@@ -71,20 +69,29 @@
             {% if is_best_product == True %}
                 <p>D1 produkt bimst 1 Bestes.</p>
             {% else %}
-            <hr>
-            <div>
-                <h1>Besser: {{ better_product_name }}</h1>
-                <h1>Ecoscore: {{ better_eco_score }}</h1>
-                {% if stores %}
-                    <h1>Verfügbar bei: {{ stores }}</h1>
+                {% if better_product_name %}
+                <hr>
+                <div>
+                    <h1>Besser: {{ better_product_name }}</h1>
+                    <h1>Ecoscore: {{ better_eco_score }}</h1>
+                    {% if stores %}
+                        <h1>Verfügbar bei: {{ stores }}</h1>
+                    {% endif %}
+                </div>
                 {% endif %}
-            </div>
             {% endif %}
         </div>
-        <div class="column2">
-            <img src={{ better_product_picture }}>
-        </div>
+        {% if better_product_picture %}
+            <div class="column2">
+                <img src={{ better_product_picture }}>
+            </div>
+        {% endif %}
     </div>
+    {% endif %}
+
+    {% if err %}
+        <hr>
+        <p>{{ err }}</p>
     {% endif %}
 </body>
 

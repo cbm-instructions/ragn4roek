@@ -14,6 +14,7 @@ def index():
         barcode = request.form['id']
         better_product_name = ""
         better_eco_score = 0
+        better_product_picture = ""
         is_best_product = True
         stores = ""
         res = requests.get(f'https://de.openfoodfacts.org/api/v0/produkt/{barcode}?fields=ecoscore_score,product_name,image_front_small_url,stores,categories_hierarchy,image_front_small_url,brands')
@@ -40,19 +41,22 @@ def index():
                             if similar_product.get('ecoscore_score') >= compare_score:
                                 products_with_better_ecoscore.append(similar_product) if not similar_product.get('stores') \
                                     else products_with_better_ecoscore_and_stores.append(similar_product)
-                    better_product = max(products_with_better_ecoscore_and_stores
-                                        if len(products_with_better_ecoscore_and_stores) > 0
-                                        else products_with_better_ecoscore, key=lambda x: x.get('ecoscore_score', 0))
-                    better_product_name = better_product.get('product_name')
-                    brand = better_product.get('brands')
-                    if brand:
-                        brand = brand.split(",")[0]
-                        better_product_name = f"{better_product_name} ({brand})"
-                    better_eco_score = better_product.get('ecoscore_score')
-                    better_product_picture = better_product.get('image_front_small_url')
-                    stores = better_product.get('stores')
+                    if len(products_with_better_ecoscore_and_stores) != 0 and len(products_with_better_ecoscore) != 0:
+                        better_product = max(products_with_better_ecoscore_and_stores
+                                            if len(products_with_better_ecoscore_and_stores) > 0
+                                            else products_with_better_ecoscore, key=lambda x: x.get('ecoscore_score', 0))
+                        better_product_name = better_product.get('product_name')
+                        brand = better_product.get('brands')
+                        if brand:
+                            brand = brand.split(",")[0]
+                            better_product_name = f"{better_product_name} ({brand})"
+                        better_eco_score = better_product.get('ecoscore_score')
+                        better_product_picture = better_product.get('image_front_small_url')
+                        stores = better_product.get('stores')
+                    else: 
+                        err = "Es gibt keine ähnlichen Produkte."
                 else: 
-                    err = "There are no similar products."
+                    err = "Es gibt keine ähnlichen Produkte."
 
                 if eco_score:
                     is_best_product = better_product.get('ecoscore_score') == eco_score

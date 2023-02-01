@@ -1,92 +1,267 @@
-# RAGN4ARØK Scanner
+# Ragn4røk - Unser Projekt: EcoSc4n
 
+In dem Projekt wurde sich die Frage gestellt, wie man Menschen dazu
+motivieren kann oder darüber informieren kann, wie man Energie spart.
 
+Um dieses Problem zu lösen, haben wir einen Scanner entwickelt, der die
+Informationen über die Nachhaltigkeit des Produkts mithilfe des so
+genannten
+[[Ecoscores]{.underline}](https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products)
+zusammenfasst, und alternative Produkte vorschlägt, die besser für die
+Umwelt sind.
 
-## Getting started
+Für dieses Projekt wird ein Raspberry Pi Zero W in Kombination mit einem
+Display und einem Scanner verwendet, um die gewünschten Informationen
+darzustellen. Eine Anleitung dafür ist im Folgenden zu finden.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# Material
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- Raspberry Pi Zero W
+- Raspberry Pi Zero W Bildschirm
 
-## Add your files
+  (https://learn.watterott.com/hats/rpi-display/)
+- SD-Karte
+- Scanner Handelsüblich
+- Power Bank
+- Modelliermasse
+- Holz
+- Schrauben
+- 2x Micro-Usb-Kabel
+- Klebeband
+- Lötzinn
+- Stiftleiste (2x20)
+- Kabel Schnittstellen
+- USB-Adapter
+- Platinenbrett
+- Optional: WEB-Server für farbige Anzeige
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+# Werkzeuge
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/pfennig42/ragn4arok-scanner.git
-git branch -M main
-git push -uf origin main
-```
+- Lötkolben
+- Schraubenzieher
+- Wasserbad in Mikrowelle ← um Formbares Plastik zu erhitzen
+- Lasercutter
+- Laptop oder Desktop Rechner
+- Pyton IDE
 
-## Integrate with your tools
+# Empfohlene Vorkenntnisse
 
-- [ ] [Set up project integrations](https://gitlab.com/pfennig42/ragn4arok-scanner/-/settings/integrations)
+- Umgang mit Microcontroller ( Raspberry Pi)
+- Python / Flask / JSON Dateien und Online Datenbanken aufrufe
+- WEB-Server
+- Lasercutter und InkspaInkscapece (Skizze)
+- Verkabelung elektronik
+- Löten
 
-## Collaborate with your team
+# Bauanleitung
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### Scanner auseinanderbauen
 
-## Test and Deploy
+Wir haben einen handelsüblichen Scanner gekauft und zerlegt. Wir haben
+uns dabei für ein [[preiswertes
+Modell]{.underline}](https://www.netum.net/de/collections/barcode-scanner/products/netum-nt-2012-wired-1d-laser-barcode-scanner-black)
+entschieden, das nicht zu komplex strukturiert ist. In dem Scanner
+befindet sich ein weiterer Microcontroller mit einem integrierten
+Scan-Modul, der eigene Einstellungen, wie Soundoptionen, hat.
 
-Use the built-in continuous integration in GitLab.
+In einer mitgelieferten Bedienungsanleitung befinden sich Barcodes,
+über die der Scanner durch Abscannen dieser Codes konfiguriert werden
+kann.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Um den Scanner auseinanderzubauen, müssen die Schrauben gelöst werden,
+die an der Unterseite des Scanners unter dem Sticker verschraubt sind:
 
-***
+![](./assets/media/image2.png){width="4.302083333333333in"
+height="3.0104166666666665in"}
 
-# Editing this README
+Nach dem Lösen der Schrauben kann der Scanner einfach
+auseinandergenommen werden, da die anderen Teile nur zusammengesteckt
+sind.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Das Scan-Modul hat einen USB-A-Male Output. Das USB-Kabel haben wir
+aufgetrennt, gekürzt und an einen Micro-USB-Anschluss gelötet. Das
+Micro-USB-Kabel kann man jetzt an den Scanner anschließen und den
+Scanner wieder zusammenbauen. Es sei darauf hingewiesen, dass die
+Datenkabel eventuell nicht den Farben entsprechen.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+![](./assets/media/image8.png){width="3.11121719160105in"
+height="4.4704866579177605in"}![](./assets/media/image4.png){width="3.119792213473316in"
+height="4.480974409448819in"}
 
-## Name
-Choose a self-explaining name for your project.
+### Raspberry Pi und Scanner-Microcontroller verbinden
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Mit dem Micro-USB Anschluss kann der Scanner-Microcontroller mit dem
+Raspberry Pi verbunden werden.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Um zu Testen, ob die Verbindung funktioniert, kann wie im Abschnitt
+[[Debugging]{.underline}](#debugging) beschrieben vorgegangen werden.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+##
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### Display und Pi verbinden
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Der Bildschirm vom Raspberry Pi Zero ist speziell für die Ports vom
+Zero gemacht, sodass er einfach an die Stiftleiste des Pi's gesteckt
+werden kann.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Wir haben uns explizit gegen Verkabelung entschieden, da dadurch bei
+ersten Versuchen Wackelkontakte entstanden sind.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Die Stiftleiste wird an den Raspberry Pi Zero gelötet und der Monitor
+wird mit seinen Pins auf die Leiste gesteckt.
+![](./assets/media/image3.png){width="3.5292136920384953in"
+height="3.0086811023622047in"}
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+###
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+![](./assets/media/image5.png){width="4.177083333333333in"
+height="1.0381944444444444in"}
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Stromversorgung und Booten
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Der Scanner bootet automatisch, sobald eine Stromversorgung
+angeschlossen ist. Es muss lediglich eine 5V-Stromversorgung
+sichergestellt werden.
 
-## License
-For open source projects, say how it is licensed.
+Dies kann durch jeden USB-Anschluss oder eine Powerbank erreicht werden.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Beim Booten des Displays müssen ein paar Einstellungen bearbeitet
+werden, damit der Pi schnell und korrekt ins Display bootet.
+
+Wie genau das funktioniert, muss für die jeweilige Version des Pis
+nachgeschlagen werden. Wichtig ist darauf zu achten, dass beim Start
+der Pi die Display-Umgebung öffnet. Das geht durch Hinzufügen eines
+Cronjobs mit "@reboot startx".
+Danach muss der Scanner direkt in das richtige Programm (Script oder
+Browser) starten. Das geht beispielsweise durch Bearbeiten des
+Services in /etc/xdg/lxsession/LXDE-pi/autostart. Dieser sieht bei uns
+für den Start in den Browser wie folgt aus:
+
++-----------------------------------------------------------------------+
+| \@pcmanfm \--desktop \--profile LXDE-pi                               |
+|                                                                       |
+| #@lxterminal -e python /home/pi/Desktop/scanner.py                    |
+|                                                                       |
+| \@xscreensaver -no-splash                                             |
+|                                                                       |
+| \@xset s off                                                          |
+|                                                                       |
+| \@xset -dpms                                                          |
+|                                                                       |
+| \@xset s noblank                                                      |
+|                                                                       |
+| \@chromium-browser \--kiosk https://scanner.pfennig.tech              |
+|                                                                       |
+| \@unclutter -idle 0.1 -root                                           |
++=======================================================================+
++-----------------------------------------------------------------------+
+
+Für den Start in das Script muss der Kommentar in Zeile zwei entfernt
+und dafür der Chromium-Browser einkommentiert werden. Die anderen
+Optionen sind für einen schnelleren, einfacheren Start, sowie
+Einschränkung der Touchpad-Funktionen.
+
+![](./assets/media/image7.png){width="5.479166666666667in"
+height="5.239583333333333in"}
+
+Der Raspberry Pi Zero W hängt über Micro-USB Kabel mit einer unten
+verbauten Power Bank zusammen.
+
+Mit Modelliermasse kann eine Art Sockel als Halterung für die
+Powerbank modelliert werden.
+
+Dadurch ist es möglich, durch Ziehen des USB-Kabels an der Power-Bank
+die Stromversorgung zu unterbrechen.
+
+![](./assets/media/image6.png){width="6.5in"
+height="5.465277777777778in"}
+
+### Datenverarbeitung / Raspberry
+
+Der letzte Schritt ist jetzt noch die Daten, die der Scanner liefert,
+auszuwerten.
+Dabei ist es wichtig zu wissen, dass der Scanner wie eine Tastatur
+funktioniert. Demnach wird der Wert des Barcodes gesendet (bspw.
+4569023490435) und im Anschluss die "Enter-Taste" betätigt. Das kann
+man sich bei der Auswertung zunutze machen.
+
+Dafür gibt es zwei Ansätze; lokal über ein Python-Skript oder extern
+über einen Webserver. Die jeweiligen Einstellungen dafür sind bei den
+Beschreibungen des Boot-Vorgangs zu finden.
+
+**Lokal:**
+
+Wir haben ein Python-Script entwickelt, das über das Terminal die
+Informationen über ein Produkt aufruft. Dieses ist im Github des
+Projekts zu finden. Auch dieses greift über WLAN auf die Datenbank von
+OpenFoodFacts zu.
+Nachteil ist, dass es deutlich schwieriger ist, Produkte zu
+vergleichen, sowie farbig darzustellen, weswegen wir dieses Feature
+weggelassen haben.
+
+Dafür läuft es autark ohne externe Abhängigkeiten.
+
+**Online:**
+
+Alternativ kann man den Pi so umkonfigurieren, dass er in einen
+Headless Browser startet und dort eine URL aufruft, auf der ein
+Webserver gehostet ist.
+
+Wir haben dafür eine Anwendung in Flask geschrieben, die ebenfalls im
+Github gefunden werden kann. Diese kann einfach in einem
+Docker-Container gestartet werden. Das entsprechende Dockerfile liegt
+dabei.
+
+Das sieht besser aus, benötigt aber diesen externen Webserver.
+
+## Debugging
+
+Beim Entwicklungsprozess kann es an unterschiedlichen Stellen zu
+Problemen kommen, bei denen Debugging vonnöten sein kann.
+
+- Nachdem die USB-Kabel gelötet sind, kann der Scanner an einen
+
+  Computer angeschlossen werden, um zu schauen, ob der Input korrekt
+  funktioniert.
+- Der Pi startet neu, wenn ein USB-Kabel angeschlossen wird. Das kann
+
+  zeitaufwendig sein. Alternativ kann ein OTG-Adapter verwendet
+  werden.
+- Eine permanente, portable Stromquelle ist hilfreich, damit der Pi
+
+  nicht beim Ortswechsel neu starten muss.
+- Ein Multimeter hilft, Ungenauigkeiten beim Lötstellen zu finden.
+
+# Ausblick
+
+Um den Scanner weiterzuentwickeln, haben wir verschiedene Ansätze
+entwickelt, die den Scanner zusätzlich verbessern.
+
+## Supermarktwähler
+
+Eine bessere Verwendung für den Supermarkt durch Kooperation mit diesen,
+sodass das Gerät nicht so exotisch wirkt.
+
+## Andere Sounds
+
+Bei dem Scannen "guter" Produkte soll eine andere Melodie erklingen, als
+bei dem Scannen schlechter Produkte. So soll die audiovisuelle
+Rückmeldung gestärkt werden.
+
+Dabei muss auf den in das Scan-Modul eingebauten Mikrocontroller
+zugegriffen werden.
+
+## Andere Designs
+
+Neben der aktuell vorhandenen Version des Scanners sind mittels 3D-Druck
+unterschiedliche optische Varianten des Scanners denkbar: ein Blaster,
+wie in Star Wars oder eine Uzi, wie in GTA. Für Menschen, die besonders
+intensiv einkaufen ist auch ein Aufbau, wie bei einem
+Scharfschützengewehr denkbar,
+
+## Verbindung zu Nutriscore o.Ä
+
+Durch den analogen Aufbau des Ecoscore ist eine Verbindung zum
+Nutriscore möglich, sodass der Nutzer direkt beide Optionen zum
+Vergleich hat. Damit lassen sich zusätzlich die Verwirrungen auflösen,
+die die Systeme aufwerfen.

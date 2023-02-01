@@ -6,7 +6,7 @@ motivieren kann oder darüber informieren kann, wie man Energie spart.
 Um dieses Problem zu lösen, haben wir einen Scanner entwickelt, der die
 Informationen über die Nachhaltigkeit des Produkts mithilfe des so
 genannten
-[[Ecoscores]{.underline}](https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products)
+[Ecoscores](https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products)
 zusammenfasst, und alternative Produkte vorschlägt, die besser für die
 Umwelt sind.
 
@@ -17,9 +17,7 @@ darzustellen. Eine Anleitung dafür ist im Folgenden zu finden.
 # Material
 
 - Raspberry Pi Zero W
-- Raspberry Pi Zero W Bildschirm
-
-  (https://learn.watterott.com/hats/rpi-display/)
+- Raspberry Pi Zero W Bildschirm (https://learn.watterott.com/hats/rpi-display/)
 - SD-Karte
 - Scanner Handelsüblich
 - Power Bank
@@ -58,8 +56,8 @@ darzustellen. Eine Anleitung dafür ist im Folgenden zu finden.
 ### Scanner auseinanderbauen
 
 Wir haben einen handelsüblichen Scanner gekauft und zerlegt. Wir haben
-uns dabei für ein [[preiswertes
-Modell]{.underline}](https://www.netum.net/de/collections/barcode-scanner/products/netum-nt-2012-wired-1d-laser-barcode-scanner-black)
+uns dabei für ein [preiswertes
+Modell](https://www.netum.net/de/collections/barcode-scanner/products/netum-nt-2012-wired-1d-laser-barcode-scanner-black)
 entschieden, das nicht zu komplex strukturiert ist. In dem Scanner
 befindet sich ein weiterer Microcontroller mit einem integrierten
 Scan-Modul, der eigene Einstellungen, wie Soundoptionen, hat.
@@ -71,8 +69,7 @@ kann.
 Um den Scanner auseinanderzubauen, müssen die Schrauben gelöst werden,
 die an der Unterseite des Scanners unter dem Sticker verschraubt sind:
 
-![](./assets/media/image2.png){width="4.302083333333333in"
-height="3.0104166666666665in"}
+![](./assets/media/image2.png)
 
 Nach dem Lösen der Schrauben kann der Scanner einfach
 auseinandergenommen werden, da die anderen Teile nur zusammengesteckt
@@ -84,9 +81,7 @@ Micro-USB-Kabel kann man jetzt an den Scanner anschließen und den
 Scanner wieder zusammenbauen. Es sei darauf hingewiesen, dass die
 Datenkabel eventuell nicht den Farben entsprechen.
 
-![](./assets/media/image8.png){width="3.11121719160105in"
-height="4.4704866579177605in"}![](./assets/media/image4.png){width="3.119792213473316in"
-height="4.480974409448819in"}
+![](./assets/media/image8.png)![](./assets/media/image4.png)
 
 ### Raspberry Pi und Scanner-Microcontroller verbinden
 
@@ -94,9 +89,8 @@ Mit dem Micro-USB Anschluss kann der Scanner-Microcontroller mit dem
 Raspberry Pi verbunden werden.
 
 Um zu Testen, ob die Verbindung funktioniert, kann wie im Abschnitt
-[[Debugging]{.underline}](#debugging) beschrieben vorgegangen werden.
+[Debugging](#debugging) beschrieben vorgegangen werden.
 
-##
 
 ### Display und Pi verbinden
 
@@ -112,10 +106,7 @@ wird mit seinen Pins auf die Leiste gesteckt.
 ![](./assets/media/image3.png){width="3.5292136920384953in"
 height="3.0086811023622047in"}
 
-###
-
-![](./assets/media/image5.png){width="4.177083333333333in"
-height="1.0381944444444444in"}
+![](./assets/media/image5.png)
 
 ### Stromversorgung und Booten
 
@@ -136,33 +127,23 @@ Danach muss der Scanner direkt in das richtige Programm (Script oder
 Browser) starten. Das geht beispielsweise durch Bearbeiten des
 Services in /etc/xdg/lxsession/LXDE-pi/autostart. Dieser sieht bei uns
 für den Start in den Browser wie folgt aus:
-
-+-----------------------------------------------------------------------+
-| \@pcmanfm \--desktop \--profile LXDE-pi                               |
-|                                                                       |
-| #@lxterminal -e python /home/pi/Desktop/scanner.py                    |
-|                                                                       |
-| \@xscreensaver -no-splash                                             |
-|                                                                       |
-| \@xset s off                                                          |
-|                                                                       |
-| \@xset -dpms                                                          |
-|                                                                       |
-| \@xset s noblank                                                      |
-|                                                                       |
-| \@chromium-browser \--kiosk https://scanner.pfennig.tech              |
-|                                                                       |
-| \@unclutter -idle 0.1 -root                                           |
-+=======================================================================+
-+-----------------------------------------------------------------------+
+```
+@pcmanfm --desktop --profile LXDE-pi
+#@lxterminal -e python /home/pi/Desktop/scanner.py
+@xscreensaver -no-splash
+@xset s off
+@xset -dpms
+@xset s noblank
+@chromium-browser --kiosk https://scanner.pfennig.tech
+@unclutter -idle 0.1 -root
+```
 
 Für den Start in das Script muss der Kommentar in Zeile zwei entfernt
 und dafür der Chromium-Browser einkommentiert werden. Die anderen
 Optionen sind für einen schnelleren, einfacheren Start, sowie
 Einschränkung der Touchpad-Funktionen.
 
-![](./assets/media/image7.png){width="5.479166666666667in"
-height="5.239583333333333in"}
+![](./assets/media/image7.png)
 
 Der Raspberry Pi Zero W hängt über Micro-USB Kabel mit einer unten
 verbauten Power Bank zusammen.
@@ -173,8 +154,7 @@ Powerbank modelliert werden.
 Dadurch ist es möglich, durch Ziehen des USB-Kabels an der Power-Bank
 die Stromversorgung zu unterbrechen.
 
-![](./assets/media/image6.png){width="6.5in"
-height="5.465277777777778in"}
+![](./assets/media/image6.png)
 
 ### Datenverarbeitung / Raspberry
 

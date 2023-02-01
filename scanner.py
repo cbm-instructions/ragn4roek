@@ -1,3 +1,11 @@
+# /bin/python3
+# created on 12.2022
+# created by Pfennig (hello@pfennig.tech)
+# maintained by -
+# GNU GPG 3.0 License
+# The scirpt uses the import given by a scanner (or other keyboard) to find a product by the ID and get the ecoscore of it. It has some failroofing, but needs further testing.
+
+
 import requests
 import time
 import os
